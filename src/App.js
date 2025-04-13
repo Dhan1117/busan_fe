@@ -1,67 +1,75 @@
-import React from 'react';
-import LandingPage from './pages/LandingPage'; // 랜딩 페이지 컴포넌트 불러오기
-import { createTheme, ThemeProvider } from '@mui/material/styles'; // MUI 테마 생성 및 제공을 위한 모듈
-import './App.scss'; // 전역 스타일시트 적용
+// src/App.js
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import SurveyForm from './pages/SurveyForm/SurveyForm';
+import CategoryDetailPage from './pages/CategoryDetailPage';
+import Header from './components/Header';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import './App.scss';
+import { categoriesData } from './data/categoriesData';
+import WishlistPage from './pages/WishlistPage';
 
-// MUI 커스텀 테마 설정
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#ff1150', // 메인 색상 설정
-    },
-    secondary: {
-      main: '#ff6f61', // 보조 색상 설정
-    },
+    primary: { main: '#ff1150' },
+    secondary: { main: '#ff6f61' },
   },
-  typography: {
-    fontFamily: 'Noto Sans KR, sans-serif', // 전체 앱에서 사용할 폰트 설정
-  },
+  typography: { fontFamily: `'Pretendard', sans-serif` },
+  
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: 'none',  // 버튼 텍스트 대문자 자동 변환 비활성화
-          borderRadius: 30,       // 버튼 둥근 테두리 적용
-          fontWeight: 'bold',     // 버튼 텍스트 굵게
-          transition: '0.3s',     // 호버 시 부드러운 전환 효과
+          textTransform: 'none',
+          borderRadius: 30,
+          fontWeight: 'bold',
+          transition: '0.3s',
         },
         containedPrimary: {
-          // contained + primary 타입 버튼 스타일 설정
           backgroundColor: '#ff1150',
           color: '#fff',
-          '&:hover': {
-            backgroundColor: '#ff6f61',
-          },
+          '&:hover': { backgroundColor: '#ff6f61' },
         },
         outlinedPrimary: {
-          // outlined + primary 타입 버튼 스타일 설정
           borderColor: '#ff1150',
           color: '#ff1150',
-          '&:hover': {
-            borderColor: '#ff6f61',
-            color: '#ff6f61',
-          },
+          '&:hover': { borderColor: '#ff6f61', color: '#ff6f61' },
         },
         textPrimary: {
-          // text + primary 타입 버튼 스타일 설정
           color: '#ff1150',
-          '&:hover': {
-            backgroundColor: 'rgba(255, 17, 80, 0.08)',
-          },
+          '&:hover': { backgroundColor: 'rgba(255, 17, 80, 0.08)' },
         },
       },
     },
   },
 });
 
-// 앱의 루트 컴포넌트
 function App() {
+  // 초기 값으로 categoriesData의 첫번째 대분류 사용 (예: '자연/해변')
+  const [selectedCategory, setSelectedCategory] = useState(categoriesData[0]?.label || '');
+
   return (
-    // 테마를 전체 앱에 적용
     <ThemeProvider theme={theme}>
-      <LandingPage /> {/* 랜딩 페이지 렌더링 */}
+      <BrowserRouter>
+        <Header onSelectCategory={setSelectedCategory} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/survey" element={<SurveyForm />} />
+          <Route
+            path="/category"
+            element={
+              <CategoryDetailPage 
+                selectedCategory={selectedCategory} 
+                onSelectSubCategory={(subLabel) => console.log("선택된 소분류:", subLabel)}
+              />
+            }
+          />
+          <Route path="/wishlist" element={<WishlistPage />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
 
-export default App; // App 컴포넌트를 외부에서 사용할 수 있도록 내보내기
+export default App;
