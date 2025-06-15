@@ -1,72 +1,114 @@
-.
+부산 여행 일정 관리 프로젝트
+프로젝트 설명
+이 프로젝트는 부산 관광지를 중심으로 여행 일정을 관리하고, Tmap API를 활용하여 관광지 위치와 이동 경로를 지도에 표시하는 웹 애플리케이션입니다. 사용자는 관광지를 검색하여 일정에 추가하거나 삭제할 수 있으며, 드래그 앤 드롭으로 관광지 순서를 자유롭게 조정할 수 있습니다.
 
-# Getting Started with Create React App
+주요 기능
+관광지 검색 및 추가
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+관광지 목록에서 검색하여 원하는 날짜에 추가
 
-## Available Scripts
+드래그 앤 드롭 일정 관리
 
-In the project directory, you can run:
+관광지 순서를 드래그 앤 드롭으로 자유롭게 변경
 
-### `npm start`
+Tmap API 연동
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+각 일자별로 관광지 위치를 지도에 마커로 표시
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+관광지 간 이동 경로를 실선으로 연결
 
-### `npm test`
+일자 추가/제거
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+여행 일수를 동적으로 조정
 
-### `npm run build`
+관광지 삭제
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+일정에서 관광지를 삭제 가능
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+반응형 UI
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+다양한 디바이스에서 사용 가능
 
-### `npm run eject`
+프로젝트 구조
+text
+src/
+  components/
+    TouristList.js
+    ...
+  data/
+    samplePlaces.js (선택적)
+  pages/
+    TravelPlanPage.js
+    ...
+public/
+  images/
+    ...
+index.html
+README.md
+설치 및 실행 방법
+프로젝트 복제
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash
+git clone https://github.com/your-repository/travel-planner.git
+cd travel-planner
+의존성 설치
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+npm install
+프로젝트 실행
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+npm start
+브라우저에서 확인
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+http://localhost:3000 접속
 
-## Learn More
+사용 방법
+여행 일정 생성
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+설문조사 또는 직접 관광지를 추가하여 일정 생성
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+관광지 검색 및 추가
 
-### Code Splitting
+검색창에서 관광지 검색 후 원하는 날짜에 추가
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+드래그 앤 드롭으로 순서 변경
 
-### Analyzing the Bundle Size
+관광지 카드를 드래그하여 순서 조정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+일자 추가/제거
 
-### Making a Progressive Web App
+일자 추가/제거 버튼으로 여행 기간 조정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+관광지 삭제
 
-### Advanced Configuration
+삭제 버튼으로 관광지 삭제
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+지도 확인
 
-### Deployment
+각 일자별로 관광지 위치와 이동 경로가 Tmap에 표시
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+기술 스택
+Frontend
 
-### `npm run build` fails to minify
+React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Material-UI
+
+react-beautiful-dnd (드래그 앤 드롭)
+
+지도
+
+Tmap API (JavaScript SDK)
+
+참고 사항
+Tmap API 키는 프로젝트 내에 하드코딩되어 있습니다.
+
+실제 배포 시 환경변수(.env)로 분리 권장
+
+관광지 데이터는 samplePlaces.js 또는 직접 입력 가능
+
+이미지는 public/images 폴더에 저장
+
+라이선스
+MIT License
